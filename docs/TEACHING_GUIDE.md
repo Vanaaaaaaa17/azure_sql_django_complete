@@ -154,3 +154,17 @@ The deployed code needs to know how to connect to Azure SQL and Cosmos DB. We **
     *   `MONGO_DB_NAME`: `django_store_reviews`
     *   *(And any SQL settings if you converted them to env vars)*
 4.  **Save** and **Restart** the app.
+
+## 7. Full Stack Deployment Overview
+
+Explain to students how the pieces fit together in the cloud:
+
+1.  **Backend (Azure App Service)**: Runs the Django API. Connects to Azure SQL and Cosmos DB via environment variables.
+2.  **Frontend (Azure App Service)**: Runs the React/Vite app (Node.js).
+    *   It is a separate resource from the backend.
+    *   It needs to know the **Backend URL** (via `VITE_API_URL`) to send API requests.
+3.  **Database Layer**:
+    *   **Azure SQL**: Relational data (Products, Stores).
+    *   **Cosmos DB**: NoSQL data (Reviews).
+
+*Tip: Emphasize that in production, the frontend browser makes requests directly to the backend API, so CORS must be enabled on the backend.*

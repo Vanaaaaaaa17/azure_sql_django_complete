@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from ..mongo_utils import get_db_handle
 from datetime import datetime
 from bson import ObjectId
+from django.contrib.auth.models import User
 
 class ReviewList(APIView):
     # API view to manage Reviews using MongoDB
@@ -19,8 +20,16 @@ class ReviewList(APIView):
         
         # Convert ObjectId to string for JSON serialization
         reviews = list(collection.find(filter_query))
+        
+        # Enrich with User data from SQL
+        user_ids = [review.get('user_id') for review in reviews if review.get('user_id')]
+        users = User.objects.filter(id__in=user_ids).values('id', 'username')
+        user_map = {user['id']: user['username'] for user in users}
+
         for review in reviews:
             review['_id'] = str(review['_id'])
+            user_id = review.get('user_id')
+            review['username'] = user_map.get(user_id, "Unknown User")
             
         return response.Response(reviews)
 

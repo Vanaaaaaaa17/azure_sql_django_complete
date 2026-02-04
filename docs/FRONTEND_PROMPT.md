@@ -61,7 +61,11 @@
     - Use tables for data-heavy views (e.g., Orders List).
     - Use modals or drawer forms for "Create/Edit" actions to keep it single-page feel.
     - **"Wow" Factor:** Add hover effects, smooth transitions between pages, and perhaps a subtle gradient background.
-- **Product Reviews:** On the "Product Details" page (or separate Reviews section), fetch and display reviews from the MongoDB endpoint. Allow adding a review for a specific product.
+- **Product Reviews:** 
+    - The backend now returns an enriched review object including the `username`.
+    - On the "Product Details" page (or via a "View Reviews" button on the product list), fetch reviews using `GET /api/reviews/?product_id=<id>`.
+    - Display the rating, comment, and the `username` of the reviewer.
+    - Allow adding a review for a specific product.
 
 ## 4. Implementation Steps
 1.  Initialize Vite project with React + Tailwind.
