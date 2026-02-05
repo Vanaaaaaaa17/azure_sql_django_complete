@@ -108,7 +108,7 @@ import urllib.parse
 mongo_username = urllib.parse.quote_plus('vanaadmin')
 mongo_password = urllib.parse.quote_plus('17092548Vk!')
 # MONGO_URI = 'mongodb://localhost:27017/'
-MONGO_URI = f'mongodb+srv://{mongo_username}:{mongo_password}@vanamongodb-mongodb+srv://vanaadmin:<password>@vanamongodb.global.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000'
+MONGO_URI = f'mongodb+srv://{mongo_username}:{mongo_password}@vanamongodb.global.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000'
 MONGO_DB_NAME = 'django_store_reviews'
 
 # Password validation
